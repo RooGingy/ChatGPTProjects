@@ -8,90 +8,19 @@
  */
 
 import java.util.*;
+import java.lang.*;
 
 public class PlayGame
 {
-    private int userWins = 0;
-    private int botWins = 0;
-
     /**
-     * Random Number Generater:
+     * Random Number generator:
      * <p>
-     * Generates a number between 1 and 100.
+     * Picks a number between 1 and 100.
      * 
-     * @return a random number between 1 though 100
+     * @return returns a random number between 1 though 10
      */
     public static int random(){
-        return (int)(Math.random() * (100 - 1)) + 1;
-    }
-
-    /**
-     * Attempts:
-     * <p>
-     * Create the amount of attempts a user has based on the level of difficuty the user has set difficulty
-     * 
-     * @return the number of attempts a person has.
-     */
-    public static int attempts(char difficulty){
-        int attempts = 0;
-
-        switch(difficulty){
-            case 'E': attempts = 7; break;
-            case 'M': attempts = 5; break;
-            case 'H': attempts = 3; break;
-            case 'N': attempts = 1; break;
-        }
-
-        return attempts;
-    }
-
-    /**
-     * Difficutly:
-     * <p>
-     * User selects their difficutly they want at the beginning of each game.
-     * 
-     * @return level of difficulty.
-     */
-    public static char difficulty(){
-        Scanner user = new Scanner(System.in);
-        char difficulty = ' ';
-
-        do{
-            System.out.println("Select Game Difficulty:   ");
-            System.out.println("E = Easy      (7 attempts)");
-            System.out.println("M = Meduim    (5 attempts)");
-            System.out.println("H = Hard      (3 attempts)");
-            System.out.println("N = Nightmare (1 attempt) ");
-            System.out.println();
-            difficulty = user.next().charAt(1);
-            difficulty = Character.toUpperCase(difficulty);
-        } while(!(difficulty == 'E' || difficulty == 'M'|| difficulty == 'H' || difficulty == 'N'));
-
-        return difficulty = Character.toUpperCase(difficulty);
-    }
-
-    /**
-     * Incerment User Wins:
-     * <p>
-     * Adds one to user wins.
-     * 
-     * @param userWins
-     * @return userWins
-     */
-    public static int incrementUserWins(int userWins){
-        return userWins++;
-    }
-
-    /**
-     * Incerment Bot Wins:
-     * <p>
-     * Adds one to bot wins.
-     * 
-     * @param botWins
-     * @return botWins
-     */
-    public static int incrementBotWins(int botWins){
-        return botWins++;
+        return (int)(Math.random() * (10 - 1)) + 1;
     }
 
     /**
@@ -103,18 +32,15 @@ public class PlayGame
      * @param botWins gets the amount of bot wins.
      * @return diplays the score.
      */
-    public static String score(int userWins, int botWins){
-        return "User: " + userWins + " Bot: " + botWins;
+    public static String attempts(int attempts){
+        return "Attempt: " + attempts;
     }
 
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
-        char difficulty = ' ';
-        int attempts = 0;
-        String user= " ";
-
+        int user = 0;
+        System.out.println("Guess the correct number between 1 though 100.");
         do{
-            System.out.println("Select Game Difficulty:   ");
             System.out.println("E = Easy      (7 attempts)");
             System.out.println("M = Meduim    (5 attempts)");
             System.out.println("H = Hard      (3 attempts)");
