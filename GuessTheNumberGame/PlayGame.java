@@ -1,6 +1,7 @@
 
 /**
- * Gussing game where bot chooses a random number between 1-100 and you are to guess what number it is.
+ * Gussing game where bot chooses a random number
+ * and you are to guess the generated number.
  *
  * @author RooGingy
  * @version 12/06/2023
@@ -19,7 +20,7 @@ public class PlayGame
     /**
      * Level Up:
      * <p>
-     * After user guess the correct number each level
+     * After user guess the correct number everything increases.
      * 
      * @param userWins gets the amount of user wins.
      * @param botWins gets the amount of bot wins.
@@ -32,11 +33,30 @@ public class PlayGame
         if(level > 1){
             range *= 2;
         }
-        
+        // Gets the number of attempts per level.
         attempts = tries(range);
     }
-
-    // bug with the range.
+    
+    /**
+     * Rest Game:
+     * <p>
+     * Resets game once player loses.
+     */
+    public static void resetGame(){
+        range = 10;
+        attempts = 0;
+        level = 0;
+    }
+    
+    /**
+     * Number of Attempts:
+     * <p>
+     * Calculate nunber of attemps baes off the range the bot generates.
+     * 
+     * @param range takes the range and divides it by 2 to get the number of
+     * attemps a person has each round.
+     * @return gets number of attemps per round.
+     */
     public static int tries(int range){
         int tries = 0;
         while(range > 1){
@@ -60,8 +80,7 @@ public class PlayGame
             userInt = input.nextInt();
             System.out.println();
 
-
-            while(userInt != bot && attempts != 0){
+            while(userInt != bot && attempts  > 0){
                 if(userInt < 1 || userInt > range){
                     System.out.println("Number outside range!");
                     System.out.print("Ener a number between 1 through " + range+ ": ");
@@ -93,15 +112,13 @@ public class PlayGame
                 System.out.println("Correct!");
                 System.out.println();
                 System.out.println("You have now advanced to the next level!");
-                levelUp();
                 playGame();
             }
             else{
                 System.out.println("Game over!");
-
+                break;
             }
-        } while(attempts != 0);
-
+        } while(attempts > 1);
     }
 
     public static void main(String[] args){
@@ -124,7 +141,7 @@ public class PlayGame
                     started = true;
                 }
             }
-            else{
+            if(started == true){
                 do{
                     System.out.println("Do you want to play again?");
                     System.out.println("Enter Y for: Yes");
@@ -133,6 +150,7 @@ public class PlayGame
                     System.out.println();
 
                     if(userString.toUpperCase().equals("Y")){
+                        resetGame();
                         playGame();
                     }
                     else{
