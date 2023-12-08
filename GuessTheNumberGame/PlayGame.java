@@ -41,29 +41,28 @@ public class PlayGame
         int user = 0;
         System.out.println("Guess the correct number between 1 though 100.");
         do{
-            System.out.println("E = Easy      (7 attempts)");
-            System.out.println("M = Meduim    (5 attempts)");
-            System.out.println("H = Hard      (3 attempts)");
-            System.out.println("N = Nightmare (1 attempt) ");
-            System.out.println();
-            difficulty = input.next().charAt(1);
-            difficulty = Character.toUpperCase(difficulty);
-        } while(!(difficulty == 'E' || difficulty == 'M'|| difficulty == 'H' || difficulty == 'N'));
+            int random = random(); // Generate a new random number.
+            int attempts = 1; // reset attempt to 1
+            System.out.println(attempts(attempts));
+            System.out.print("Enter a number: ");
+            user = input.nextInt();
 
-        switch(difficulty){
-            case 'E': attempts = 7; break;
-            case 'M': attempts = 5; break;
-            case 'H': attempts = 3; break;
-            case 'N': attempts = 1; break;
-        }
-
-        do{
-            do{
-                System.out.println("Enter a number between 1 through 100");
-                System.out.print("or enter 'X' to exit: ");
-                user = input.nextLine();
-
-            }while(!(user.equals("X")));
-        }while(attempts!=0);
+            while(!(user == random || attempts == 10))
+            {
+                attempts++;
+                if(user < random){
+                    System.out.println("Number Is Too Low!");
+                    System.out.println(attempts(attempts));
+                    System.out.print("Try Again: ");
+                    user = input.nextInt();
+                }
+                else if(user > random){
+                    System.out.println("Number Is Too High!");
+                    System.out.println(attempts(attempts));
+                    System.out.print("Try Again: ");
+                    user = input.nextInt();
+                }
+            }
+        } while(user != -1);
     }
 }
