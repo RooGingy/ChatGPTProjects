@@ -1,0 +1,18 @@
+User Input:
+    Allow the user to input the number of dice they want to roll.
+    Take input for the number of sides on each die (common options are 4, 6, 8, 10, 12, and 20-sided dice).
+
+Rolling the Dice:
+    Simulate the rolling of the dice based on user input.
+    Generate random numbers for each die within the specified range of sides.
+
+Display Results:
+    Print or display the results of each die roll to the user.
+    Sum up the total value if multiple dice are rolled.
+
+Repeat or Exit:
+    Ask the user if they want to roll the dice again or exit the program.
+    Implement a loop to allow the user to roll the dice multiple times if desired.
+
+Error Handling:
+    Validate user input to ensure it falls within acceptable ranges (e.g., a positive number of dice, valid sides on each die).
